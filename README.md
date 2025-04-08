@@ -59,7 +59,7 @@ Thanks!
 ```
 
 
-## 🛠 Optional: Local Reconstruction Script
+## Local Reconstruction Script
 
 Want a local decoder? You can write one like this:
 

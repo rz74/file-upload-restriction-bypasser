@@ -1,15 +1,15 @@
-# 📦 File Obfuscator & Uploader Helper
+# File Obfuscator & Uploader Helper
 
-This tool helps you bypass file upload restrictions (like those in ChatGPT or web apps that limit file types) by:
+This very simple tool helps you bypass file upload restrictions for LLM models and other web apps placed by your network admin by:
 
-- 🔐 Base64-encoding any file  
-- 🔀 Obfuscating it using a fixed character shift  
-- 🧩 Splitting the result into 10 untyped segment files (`part_0` through `part_9`)  
-- 📝 Generating a `README.txt` that documents how to reconstruct the original  
-- 🗜️ Packaging everything into a single `.zip`
+- Base64-encoding any file  
+- Obfuscating it using a fixed character shift  
+- Splitting the result into 10 untyped segment files (`part_0` through `part_9`)  
+- Generating a `README.txt` that documents how to reconstruct the original  
+- Packaging everything into a single `.zip`
 
 
-## ✅ Features
+## Features
 
 - Works with any file type: `.py`, `.pdf`, `.zip`, `.jpg`, you name it.
 - No dangerous encryption—just safe obfuscation.
@@ -17,7 +17,7 @@ This tool helps you bypass file upload restrictions (like those in ChatGPT or we
 
 
 
-## 🔧 How It Works
+## How It Works
 
 1. Base64-encode the original file  
 2. Shift each character’s ASCII value forward by a number you choose (e.g. `+3`)  
@@ -29,7 +29,7 @@ This tool helps you bypass file upload restrictions (like those in ChatGPT or we
 5. Zip everything into `[originalname]_obfuscated.zip`
 
 
-## 🚀 How to Use
+## How to Use
 
 ```bash
 python obfuscate_and_package.py
@@ -42,7 +42,7 @@ Then follow the prompts:
 
 
 
-## 🧠 To Reconstruct the File with ChatGPT
+## To Reconstruct the File with ChatGPT
 
 Upload all `part_*` files and `README.txt`, then paste this prompt:
 
@@ -75,7 +75,7 @@ Just reverse the process:
 - Save as the original file
 
 
-## 📁 Output Example
+## Output Example
 
 ```
 output_20250408_183320/

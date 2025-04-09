@@ -65,8 +65,8 @@ def main():
     obfuscated = shift_obfuscate(b64_data, shift_value)
 
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-    output_dir = Path(f"output_{timestamp}")
-    output_dir.mkdir(exist_ok=True)
+    output_dir = Path("output")
+    output_dir.mkdir(exist_ok=True, parents=True)
 
     segments = split_into_segments(obfuscated, num_segments)
     segment_names = save_segments(segments, output_dir)

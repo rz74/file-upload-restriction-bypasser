@@ -1,5 +1,4 @@
 import base64
-import os
 import math
 import zipfile
 from datetime import datetime
@@ -48,8 +47,11 @@ def main():
     file_path = input("Enter the path to the file you want to encode: ").strip()
     try:
         shift_value = int(input("Enter a character shift value (e.g. 3): ").strip())
-    except ValueError:
-        print("Shift must be an integer.")
+        num_segments = int(input("Enter number of segments (1–10): ").strip())
+        if not (1 <= num_segments <= 10):
+            raise ValueError("Segment count must be between 1 and 10.")
+    except ValueError as e:
+        print(f"Invalid input: {e}")
         return
 
     file_path = Path(file_path)
@@ -57,26 +59,20 @@ def main():
         print("File not found.")
         return
 
-    # Step 1: Encode
     with open(file_path, 'rb') as f:
         b64_data = base64.b64encode(f.read()).decode('utf-8')
 
-    # Step 2: Obfuscate with shift
     obfuscated = shift_obfuscate(b64_data, shift_value)
 
-    # Step 3: Timestamped output folder
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-    output_dir = Path(f"output_{timestamp}")
-    output_dir.mkdir(exist_ok=True)
+    output_dir = Path("output")
+    output_dir.mkdir(exist_ok=True, parents=True)
 
-    # Step 4: Split and save
-    segments = split_into_segments(obfuscated, 10)
+    segments = split_into_segments(obfuscated, num_segments)
     segment_names = save_segments(segments, output_dir)
 
-    # Step 5: README
     create_readme(file_path.name, shift_value, segment_names, output_dir)
 
-    # Step 6: Zip
     zip_file = zip_output(output_dir, f"{file_path.stem}_obfuscated.zip")
 
     print(f"✅ Done! Zip created at: {zip_file}")

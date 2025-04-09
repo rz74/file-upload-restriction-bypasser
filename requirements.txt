@@ -1,0 +1,7 @@
+# No external dependencies required
+# Standard library modules used:
+# - base64
+# - zipfile
+# - math
+# - pathlib
+# - datetime
